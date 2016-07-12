@@ -979,7 +979,9 @@ public class SunJDKParser extends AbstractDumpParser {
         if (name.indexOf("prio") > 0) {
             tokens = new String[7];
 
-            tokens[0] = name.substring(1, name.lastIndexOf('"'));
+            tokens[0] = name.substring(1, name.lastIndexOf('"') == 0 ? 
+                    name.length() - 1 : 
+                    name.lastIndexOf('"'));
             tokens[1] = name.indexOf("daemon") > 0 ? "Daemon" : "Task";
 
             String strippedToken = name.substring(name.lastIndexOf('"') + 1);
@@ -1034,16 +1036,21 @@ public class SunJDKParser extends AbstractDumpParser {
             }
         } else {
             tokens = new String[3];
-            tokens[0] = name.substring(1, name.lastIndexOf('"'));
+            tokens[0] = name.substring(1, name.lastIndexOf('"') == 0 ? 
+                    name.length() - 1 : 
+                    name.lastIndexOf('"'));
             if (name.indexOf("nid=") > 0) {
                 tokens[1] = name.substring(name.indexOf("nid=") + 4, name.indexOf("state=") - 1);
                 tokens[2] = name.substring(name.indexOf("state=") + 6);
             } else if (name.indexOf("t@") > 0) {
                 tokens[1] = name.substring(name.indexOf("t@") + 2, name.indexOf("state=") - 1);
                 tokens[2] = name.substring(name.indexOf("state=") + 6);
-            } else {
+            } else if (name.indexOf("id=") > 0) {
                 tokens[1] = name.substring(name.indexOf("id=") + 3, name.indexOf(" in"));
                 tokens[2] = name.substring(name.indexOf(" in") + 3);
+            } else {
+                tokens[1] = "";
+                tokens[2] = "";
             }
         }
 
