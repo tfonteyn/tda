@@ -58,7 +58,7 @@ public class FilterDialog extends JDialog {
     public FilterDialog(Frame owner) {
         super(owner, "Filter Settings");
         try {
-            setIconImage(TDA.createImageIcon("Filters.gif").getImage());
+            setIconImage(TDA.createImageIcon("Filters.png").getImage());
         } catch (NoSuchMethodError nsme) {
             // ignore, for 1.4 backward compatibility
         }

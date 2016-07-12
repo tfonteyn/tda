@@ -29,7 +29,7 @@ import org.openide.util.Utilities;
 public final class VisualvmOptionsCategory extends OptionsCategory {
 
     public Icon getIcon() {
-        return new ImageIcon(Utilities.loadImage("net/java/dev/tda/visualvm/resources/options.gif"));
+        return new ImageIcon(Utilities.loadImage("net/java/dev/tda/visualvm/resources/tda.png"));
     }
 
     public String getCategoryName() {

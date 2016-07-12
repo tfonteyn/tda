@@ -59,7 +59,7 @@ public class PreferencesDialog extends JDialog {
     public PreferencesDialog(Frame owner) {
         super(owner, "Preferences");
         try {
-            this.setIconImage(TDA.createImageIcon("Preferences.gif").getImage());
+            this.setIconImage(TDA.createImageIcon("Preferences.png").getImage());
         } catch (NoSuchMethodError nsme) {
         // ignore, for 1.4 backward compatibility
         }

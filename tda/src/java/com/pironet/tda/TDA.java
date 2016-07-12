@@ -269,8 +269,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
                         showFilterDialog();
                     } else if(evt.getDescription().startsWith("categories")) {
                         showCategoriesDialog();
-                    } else if(evt.getDescription().startsWith("overview")) {
-                        showHelp();
                     } else if(evt.getURL() != null) {
                         try {
                             // launch a browser with the appropriate URL
@@ -621,13 +619,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         }
     }
 
-    /**
-     * show help dialog.
-     */
-    private void showHelp() {
-        HelpViewer.show(getFrame());
-    }
-    
     /**
      * sort monitors by thread amount
      */
@@ -1720,10 +1711,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
             } else if ("Exit TDA".equals(source.getText())) {
                 saveState();
                 frame.dispose();
-            } else if (ResourceManager.translate("help.contents").equals(source.getText())) {
-                showHelp();
-            } else if ("Help".equals(source.getText())) {
-                showHelp();
             } else if ("Release Notes".equals(source.getText())) {
                 showInfoFile("Release Notes", "doc/README", "Document.png");
             } else if ("License".equals(source.getText())) {
@@ -1802,8 +1789,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
                 showCategoriesDialog();
             } else if("Request a Thread Dump".equals(source.getToolTipText())) {
                 addMXBeanDump();
-            } else if("Help".equals(source.getToolTipText())) {
-                showHelp();
             }
             source.setSelected(false);
         }

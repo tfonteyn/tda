@@ -43,7 +43,7 @@ import org.openide.util.Utilities;
  * @author Ingo Rockel <mailto:irockel@dev.java.net>
  */
 public class TDAView extends DataSourceView {
-    private static final String IMAGE_PATH = "net/java/dev/tda/visualvm/resources/tda.gif"; // NOI18N
+    private static final String IMAGE_PATH = "net/java/dev/tda/visualvm/resources/tda.png"; // NOI18N
     private Snapshot logContent;
     
     private JButton collapseAllButton = null;

@@ -340,17 +340,7 @@ public class MainMenu extends JMenuBar {
         menu.setMnemonic(KeyStroke.getKeyStroke(ResourceManager.translate("help.menu.mnem")).getKeyCode());
         menu.getAccessibleContext().setAccessibleDescription(
                 ResourceManager.translate("help.menu.description"));
-        
-        menuItem = new JMenuItem(ResourceManager.translate("help.contents"),
-                KeyStroke.getKeyStroke(ResourceManager.translate("help.contents.mnem")).getKeyCode());
-        menuItem.setIcon(TDA.createImageIcon("Help.png"));
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                ResourceManager.translate("help.contents.description"));
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                ResourceManager.translate("help.contents.accel")));
-        
-        menuItem.addActionListener(listener);
-        menu.add(menuItem);
+                
         menuItem = new JMenuItem("Release Notes",null);
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "Release Notes");
@@ -465,7 +455,6 @@ public class MainMenu extends JMenuBar {
         toolBar.add(createToolBarButton("Filters", "Filters.png"));
         toolBar.add(createToolBarButton("Custom Categories", "CustomCat.png"));
         toolBar.addSeparator();
-        toolBar.add(createToolBarButton("Help","Help.png"));
     }
     
     /**

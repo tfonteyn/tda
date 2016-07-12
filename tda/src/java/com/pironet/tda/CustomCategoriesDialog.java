@@ -57,7 +57,7 @@ public class CustomCategoriesDialog extends JDialog {
     public CustomCategoriesDialog(Frame owner) {
         super(owner, "Custom Categories");
         try {
-            setIconImage(TDA.createImageIcon("Filters.gif").getImage());
+            setIconImage(TDA.createImageIcon("CustomCat.png").getImage());
         } catch (NoSuchMethodError nsme) {
         // ignore, for 1.4 backward compatibility
         }
