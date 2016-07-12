@@ -38,13 +38,12 @@ import com.pironet.tda.utils.TreeRenderer;
 import com.pironet.tda.utils.ViewScrollPane;
 import com.pironet.tda.utils.jedit.JEditTextArea;
 import com.pironet.tda.utils.jedit.PopupMenu;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
+
+import java.awt.*;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.*;
 import java.io.FileNotFoundException;
-import java.util.Enumeration;
+import java.util.*;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -64,15 +63,8 @@ import javax.swing.tree.TreeSelectionModel;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import java.io.IOException;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -91,10 +83,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.NumberFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
+import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import javax.swing.BorderFactory;
@@ -130,7 +119,7 @@ import javax.swing.tree.TreePath;
  * @author irockel
  */
 public class TDA extends JPanel implements ListSelectionListener, TreeSelectionListener, ActionListener, MenuListener {
-    private static JFileChooser fc;
+    private static FileDialog fc;
     private static JFileChooser sessionFc;
     private static int DIVIDER_SIZE = 4;
     protected static JFrame frame;
@@ -296,7 +285,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
 
         });
 
-        
         htmlView = new ViewScrollPane(htmlPane, runningAsVisualVMPlugin);
         ViewScrollPane emptyView = new ViewScrollPane(emptyPane, runningAsVisualVMPlugin);
         
@@ -347,12 +335,72 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         
         if(firstFile && runningAsVisualVMPlugin) {
             // init filechooser
-            fc = new JFileChooser();
-            fc.setMultiSelectionEnabled(true);
-            fc.setCurrentDirectory(PrefManager.get().getSelectedPath());
+            fc = new FileDialog(TDA.get(true).getFrame());
+            fc.setMultipleMode(true);
+            try {
+                fc.setDirectory(PrefManager.get().getSelectedPath().getCanonicalPath());
+            } catch (IOException ioe) {
+                // ignore
+            }
+        }
+
+        if (!runningAsJConsolePlugin && !runningAsVisualVMPlugin) {
+            new DropTarget(htmlPane, DnDConstants.ACTION_REFERENCE | DnDConstants.ACTION_LINK, getDropTargetListener());
         }
     }
-    
+
+    private DropTargetListener getDropTargetListener() {
+        return new DropTargetListener() {
+                public void dragEnter(DropTargetDragEvent event) {
+                }
+
+                public void dragOver(DropTargetDragEvent event) {
+                }
+
+                public void dropActionChanged(DropTargetDragEvent event) {
+                }
+
+                public void dragExit(DropTargetEvent event) {
+                }
+
+                public void drop(DropTargetDropEvent event) {
+                    try {
+                        event.acceptDrop(DnDConstants.ACTION_REFERENCE);
+                        Transferable transfer = event.getTransferable();
+                        File[] files = getAcceptedFiles(transfer);
+                        if (null != files && files.length != 0) {
+                            TDA.get(true).openFiles(files, false);
+                            event.getDropTargetContext().dropComplete(true);
+                        }
+                    } catch (InvalidDnDOperationException ex) {
+                        // ignore
+                    }
+                }
+            };
+    }
+
+    private File[] getAcceptedFiles(Transferable transferable) {
+        try {
+            if (!transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+                return null;
+            }
+
+            List filelist = (List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+            List acceptedFiles = new ArrayList();
+            File[] files = (File[]) filelist.toArray(new File[0]);
+            for (int i = 0; i < files.length; i++) {
+                if (!files[i].isDirectory()) {
+                    acceptedFiles.add(files[i]);
+                }
+            }
+            return (File[]) acceptedFiles.toArray(new File[0]);
+        } catch (IOException ex) {
+            return null;
+        } catch (UnsupportedFlavorException ex) {
+            return null;
+        }
+    }
+
     private void getLogfileFromClipboard() {
         Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
         String text = null;
@@ -1865,19 +1913,25 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
      */
     public void saveLogFile() {
         if(fc == null) {
-            fc = new JFileChooser();
-            fc.setMultiSelectionEnabled(true);
-            fc.setCurrentDirectory(PrefManager.get().getSelectedPath());
+            fc = new FileDialog(TDA.get(true).getFrame());
+            fc.setMultipleMode(false);
+            try {
+                fc.setDirectory(PrefManager.get().getSelectedPath().getCanonicalPath());
+            } catch (IOException ioe) {
+                // ignore
+            }
         }
         if(firstFile && (PrefManager.get().getPreferredSizeFileChooser().height > 0)) {
             fc.setPreferredSize(PrefManager.get().getPreferredSizeFileChooser());
         }
-        int returnVal = fc.showSaveDialog(this.getRootPane());
+        fc.setMode(FileDialog.SAVE);
         fc.setPreferredSize(fc.getSize());
+        fc.setVisible(true);
         PrefManager.get().setPreferredSizeFileChooser(fc.getSize());
-        
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
+
+        String selectedFile = fc.getFile();
+        if (selectedFile != null) {
+            File file = new File(selectedFile);
             int selectValue = 0;
             if(file.exists()) {
                 Object[] options = { "Overwrite", "Cancel" };
@@ -1913,12 +1967,13 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         if(firstFile && (PrefManager.get().getPreferredSizeFileChooser().height > 0)) {
             fc.setPreferredSize(PrefManager.get().getPreferredSizeFileChooser());
         }
-        int returnVal = fc.showOpenDialog(this.getRootPane());
         fc.setPreferredSize(fc.getSize());
+        fc.setVisible(true);
         PrefManager.get().setPreferredSizeFileChooser(fc.getSize());
-        
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File[] files = fc.getSelectedFiles();
+
+        File[] files = fc.getFiles();
+
+        if (files.length > 0) {
             openFiles(files, false);
         }
     }
@@ -2143,10 +2198,12 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
      * open and parse loggc file
      */
     private void openLoggcFile() {
-        int returnVal = fc.showOpenDialog(this.getRootPane());
-        
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
+        fc.setVisible(true);
+
+        File[] selectedFiles = fc.getFiles();
+
+        if (selectedFiles.length > 0) {
+            File file = selectedFiles[1];
             loggcFile = file.getAbsolutePath();
             if(loggcFile != null) {
                 try {
@@ -2235,7 +2292,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
      */
     private void saveState() {
         PrefManager.get().setWindowState(frame.getExtendedState());
-        PrefManager.get().setSelectedPath(fc.getCurrentDirectory());
+        PrefManager.get().setSelectedPath(new File(fc.getDirectory()));
         PrefManager.get().setPreferredSize(frame.getRootPane().getSize());
         PrefManager.get().setWindowPos(frame.getX(), frame.getY());
         if(isThreadDisplay()) {
@@ -2274,7 +2331,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         
         
         frame.getRootPane().setPreferredSize(PrefManager.get().getPreferredSize());
-        
+
         frame.setJMenuBar(new MainMenu(TDA.get(true)));
         TDA.get(true).init(false, false);
         
@@ -2287,10 +2344,14 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         frame.setContentPane(TDA.get(true));
         
         // init filechooser
-        fc = new JFileChooser();
-        fc.setMultiSelectionEnabled(true);
-        fc.setCurrentDirectory(PrefManager.get().getSelectedPath());
-        
+        fc = new FileDialog(TDA.get(true).getFrame());
+        fc.setMultipleMode(true);
+        try {
+            fc.setDirectory(PrefManager.get().getSelectedPath().getCanonicalPath());
+        } catch (IOException ioe) {
+            // ignore
+        }
+
         /**
          * add window listener for persisting state of main frame
          */
@@ -2303,7 +2364,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
                 System.exit(0);
             }
         });
-        
+
         frame.setLocation(PrefManager.get().getWindowPos());
         
         //Display the window.
@@ -2314,7 +2375,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         
         frame.setVisible(true);
     }
-    
+
     /**
      * display search dialog for current category
      */
@@ -2344,7 +2405,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
      * main startup method for TDA
      */
     public static void main(String[] args) {
-        if(args.length > 0) {
+        if (args.length > 0) {
             dumpFile = args[0];
         }
         //Schedule a job for the event-dispatching thread:
