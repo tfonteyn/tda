@@ -987,7 +987,10 @@ public class SunJDKParser extends AbstractDumpParser {
             String strippedToken = name.substring(name.lastIndexOf('"') + 1);
 
             if (strippedToken.indexOf("tid=") >= 0) {
-                tokens[2] = strippedToken.substring(strippedToken.indexOf("prio=") + 5, strippedToken.indexOf("tid=") - 1);
+                int tidIndex = strippedToken.indexOf("tid=") - 1;
+                int osPrioIndex = strippedToken.indexOf("os_prio=") - 1;
+                int endIndex = osPrioIndex > 0 ? osPrioIndex : tidIndex;
+                tokens[2] = strippedToken.substring(strippedToken.indexOf("prio=") + 5, endIndex);                
             } else {
                 tokens[2] = strippedToken.substring(strippedToken.indexOf("prio=") + 5);
             }
