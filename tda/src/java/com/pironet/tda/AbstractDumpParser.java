@@ -15,7 +15,6 @@
  * along with TDA; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * $Id: AbstractDumpParser.java,v 1.17 2008-08-12 20:23:26 irockel Exp $
  */
 package com.pironet.tda;
 
@@ -28,10 +27,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -136,7 +131,7 @@ public abstract class AbstractDumpParser implements DumpParser {
                     if(occurence >= (minOccurence-1)) {
                         threadCount++;
                         StringBuffer content = new StringBuffer("<body bgcolor=\"ffffff\"><b><font size=").append(TDA.getFontSizeModifier(-1)).
-                                append(">").append((String) keys.get(0)).append("</b></font><hr/><pre><font size=").
+                                append(">").append((String) keys.get(0)).append("</b></font><hr><pre><font size=").
                                 append(TDA.getFontSizeModifier(-1)).append(">").
                                 append(fixMonitorLinks((String) ((Map) dumpStore.get(keys.get(0))).get(threadKey), (String) keys.get(0)));
 
@@ -147,7 +142,7 @@ public abstract class AbstractDumpParser implements DumpParser {
                                 content.append(TDA.getFontSizeModifier(-1));
                                 content.append(">");
                                 content.append(keys.get(i));
-                                content.append("</font></b><hr/><pre><font size=");
+                                content.append("</font></b><hr><pre><font size=");
                                 content.append(TDA.getFontSizeModifier(-1));
                                 content.append(">");
                                 content.append(fixMonitorLinks((String) ((Map)dumpStore.get(keys.get(i))).get(threadKey), (String) keys.get(i)));
@@ -155,7 +150,7 @@ public abstract class AbstractDumpParser implements DumpParser {
                                 maxLines = maxLines > countLines ? maxLines : countLines;
                             }
                         }
-                        addToCategory(catMerge, threadKey, null, content, maxLines, true);
+                        addToCategory(catMerge, threadKey, null, content.toString(), maxLines, true);
                     }
                 }
             }
@@ -192,14 +187,14 @@ public abstract class AbstractDumpParser implements DumpParser {
     private String getStatInfo(Vector keys, String prefix, int minOccurence, int threadCount) {
         StringBuffer statData = new StringBuffer("<body bgcolor=\"#ffffff\"><font face=System><b><font face=System> "); 
         
-        statData.append("<b>" + prefix + "</b><hr/><p><i>");
+        statData.append("<b>" + prefix + "</b><hr><p><i>");
         for(int i = 0; i < keys.size(); i++) {
             statData.append(keys.get(i));
             if(i < keys.size() -1) {
                 statData.append(", ");
             }
         }
-        statData.append("</i></p><br/>" +
+        statData.append("</i></p><br>" +
                 "<table border=0><tr bgcolor=\"#dddddd\"><td><font face=System " +
                 ">Overall Thread Count</td><td width=\"150\"></td><td><b><font face=System>");
         statData.append(threadCount);
@@ -252,7 +247,6 @@ public abstract class AbstractDumpParser implements DumpParser {
     /**
      * create a category entry for a category (categories are "Monitors", "Threads waiting", e.g.). A ThreadInfo
      * instance will be created with the passed information.
-     * FIXME: this method needs rework for creating a JXTable for the categories, except monitors
      * @param category the category the node should be added to.
      * @param title the title of the new node
      * @param info the info part of the new node
@@ -260,10 +254,10 @@ public abstract class AbstractDumpParser implements DumpParser {
      * @param lineCount the line count of the thread stack, 0 if not applicable for this element.
      * @see ThreadInfo 
      */
-    protected void addToCategory(DefaultMutableTreeNode category, String title, StringBuffer info, StringBuffer content, int lineCount,
+    protected void addToCategory(DefaultMutableTreeNode category, String title, StringBuffer info, String content, int lineCount,
             boolean parseTokens) {
         DefaultMutableTreeNode threadInfo = null;
-        threadInfo = new DefaultMutableTreeNode(new ThreadInfo(title, info != null ? info.toString() : null, content.toString(), lineCount, 
+        threadInfo = new DefaultMutableTreeNode(new ThreadInfo(title, info != null ? info.toString() : null, content, lineCount, 
                 parseTokens ? getThreadTokens(title) : null));
         ((Category)category.getUserObject()).addToCatNodes(threadInfo);
     }

@@ -17,7 +17,6 @@
  * along with TDA; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * $Id: DumpParserFactory.java,v 1.11 2008-02-14 14:36:08 irockel Exp $
  */
 
 package com.pironet.tda;
@@ -80,7 +79,9 @@ public class DumpParserFactory {
                 bis.mark(readAheadLimit);
                 String line = bis.readLine();
                 dm.checkForDateMatch(line);
-                if(SunJDKParser.checkForSupportedThreadDump(line)) {
+                if (WrappedSunJDKParser.checkForSupportedThreadDump(line)) {
+                  currentDumpParser = new WrappedSunJDKParser(bis, threadStore, lineCounter, withCurrentTimeStamp, startCounter, dm);
+                } else if(SunJDKParser.checkForSupportedThreadDump(line)) {
                     currentDumpParser = new SunJDKParser(bis, threadStore, lineCounter, withCurrentTimeStamp, startCounter, dm);
                 } else if(BeaJDKParser.checkForSupportedThreadDump(line)) {
                     currentDumpParser = new BeaJDKParser(bis, threadStore, lineCounter, dm);

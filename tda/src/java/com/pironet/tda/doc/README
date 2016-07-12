@@ -1,9 +1,31 @@
 <html>
 <link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
 <body bgcolor="ffffff"><pre>
-TDA - Thread Dump Analyzer -- Version 2.0
+TDA - Thread Dump Analyzer -- Version 2.3
 
-Note: This is the 2.0 release of the software, for an usage overview see Help/Overview.
+Note: This is the 2.3 release of the software, for an usage overview see Help/Overview.
+
+Changes from 2.2 are:
+* fixed dumping of blocked threads in jconsole plugin.
+* fixed issue 31: class cast exception in predefined categories fallback.
+* fixed issue 35: improved unix shell script.
+
+Changes from 2.1 are:
+* Implemented Issue 9: now parked threads using java.lang.concurrent are recognized.
+* Fixed Issue 26: no more lost filters in categories. Thanks to Robert Whitehurst.
+* Fixed Issue 27: Improved memory footprint, now parsed thread dump use about
+  20% less memory.
+* Fixed Issue 29: Closing of log files now works on windows.
+* Fixed Issue 30: Opening from welcome page now works on windows.
+* Fixed HTML if JDK 5.x is used.
+* Small Adjustments and Fixes.
+
+Changes from 2.0 are:
+* Added last line parsed to the error message if an error occurs during parsing.
+* Fixed Issue 22, check for null if diffing dumps.
+* Fixed Issue 23, fixed parsing of remote VisualVM Dumps.
+* Fixes Issue 24, fixed parsing of monitors in VisualVM Dumps.
+* Bugfixing.
 
 Changes from 1.6 are:
 * Tool now is available as VisualVM plugin.
