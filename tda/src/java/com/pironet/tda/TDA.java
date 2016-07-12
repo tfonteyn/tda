@@ -42,9 +42,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.*;
 import java.io.FileNotFoundException;
-import java.util.Enumeration;
+import java.util.*;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -71,8 +71,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -91,10 +89,6 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.NumberFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import javax.swing.BorderFactory;
@@ -296,7 +290,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
 
         });
 
-        
         htmlView = new ViewScrollPane(htmlPane, runningAsVisualVMPlugin);
         ViewScrollPane emptyView = new ViewScrollPane(emptyPane, runningAsVisualVMPlugin);
         
@@ -350,6 +343,62 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
             fc = new JFileChooser();
             fc.setMultiSelectionEnabled(true);
             fc.setCurrentDirectory(PrefManager.get().getSelectedPath());
+        }
+
+        if (!runningAsJConsolePlugin && !runningAsVisualVMPlugin) {
+            new DropTarget(htmlPane, DnDConstants.ACTION_REFERENCE | DnDConstants.ACTION_LINK, getDropTargetListener());
+        }
+    }
+
+    private DropTargetListener getDropTargetListener() {
+        return new DropTargetListener() {
+                public void dragEnter(DropTargetDragEvent event) {
+                }
+
+                public void dragOver(DropTargetDragEvent event) {
+                }
+
+                public void dropActionChanged(DropTargetDragEvent event) {
+                }
+
+                public void dragExit(DropTargetEvent event) {
+                }
+
+                public void drop(DropTargetDropEvent event) {
+                    try {
+                        event.acceptDrop(DnDConstants.ACTION_REFERENCE);
+                        Transferable transfer = event.getTransferable();
+                        File[] files = getAcceptedFiles(transfer);
+                        if (null != files && files.length != 0) {
+                            TDA.get(true).openFiles(files, false);
+                            event.getDropTargetContext().dropComplete(true);
+                        }
+                    } catch (InvalidDnDOperationException ex) {
+                        // ignore
+                    }
+                }
+            };
+    }
+
+    private File[] getAcceptedFiles(Transferable transferable) {
+        try {
+            if (!transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+                return null;
+            }
+
+            List filelist = (List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+            List acceptedFiles = new ArrayList();
+            File[] files = (File[]) filelist.toArray(new File[0]);
+            for (int i = 0; i < files.length; i++) {
+                if (!files[i].isDirectory()) {
+                    acceptedFiles.add(files[i]);
+                }
+            }
+            return (File[]) acceptedFiles.toArray(new File[0]);
+        } catch (IOException ex) {
+            return null;
+        } catch (UnsupportedFlavorException ex) {
+            return null;
         }
     }
     
