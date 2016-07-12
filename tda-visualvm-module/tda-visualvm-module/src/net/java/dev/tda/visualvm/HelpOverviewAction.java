@@ -36,7 +36,7 @@ public final class HelpOverviewAction extends CallableSystemAction {
 
     @Override
     protected String iconResource() {
-        return "net/java/dev/tda/visualvm/resources/help.gif";
+        return "net/java/dev/tda/visualvm/resources/help.png";
     }
 
     public HelpCtx getHelpCtx() {
