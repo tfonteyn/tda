@@ -6,13 +6,13 @@ TDA - Thread Dump Analyzer -- Version 2.3
 Note: This is the 2.3 release of the software, for an usage overview see Help/Overview.
 
 Changes from 2.2 are:
-* Added Drag and Drop of logfiles
-* Use native File Dialog
-* Fixed parsing of Java 8 Thread Dumps
-* Fixed Crash in logfile parsing
+* Added Drag and Drop of logfiles (GitHub Issue 1)
+* Use native File Dialog (GitHub Issue 1)
+* Fixed parsing of Java 8 Thread Dumps (GitHub Issue 6)
+* Fixed Crash in logfile parsing (Github Issue 2)
 * fixed dumping of blocked threads in jconsole plugin.
-* fixed issue 31: class cast exception in predefined categories fallback.
-* fixed issue 35: improved unix shell script.
+* fixed issue TDA-31: class cast exception in predefined categories fallback.
+* fixed issue TDA-35: improved unix shell script.
 
 Changes from 2.1 are:
 * Implemented Issue 9: now parked threads using java.lang.concurrent are recognized.
@@ -106,5 +106,5 @@ Changes from 1.0 are:
 * Multiple regex for date parsing in settings (but only one active).
 * Bugfixing.
 
-Report problems, ask questions and submit suggestions in the forum.
+Goto to GitHub to report problems and ask questions.
 
