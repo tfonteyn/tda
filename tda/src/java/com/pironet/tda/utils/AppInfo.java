@@ -28,9 +28,9 @@ package com.pironet.tda.utils;
 public class AppInfo {
     private static final String APP_SHORT_NAME = "TDA";
     private static final String APP_FULL_NAME = "Thread Dump Analyzer";
-    private static final String VERSION = "2.2";
+    private static final String VERSION = "2.3";
     
-    private static final String COPYRIGHT = "2006-2010";
+    private static final String COPYRIGHT = "2006-2016";
     
     /**
      * get info text for status bar if no real info is displayed.

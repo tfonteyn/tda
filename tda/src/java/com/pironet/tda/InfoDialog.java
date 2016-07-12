@@ -62,8 +62,8 @@ public class InfoDialog extends JDialog {
         
         String info = "<html><body>" +
                 "<p><i>Java Version: " + System.getProperty("java.version") + "<br><br>" +
-                "(C) 2006-2010 by Ingo Rockel &lt;irockel@dev.java.net&gt;,<br>" +
-                "with contributions from Robert Whitehurst &lt;maestoso@dev.java.net&gt;.<br><br>" +
+                "(C) 2006-2016 by Ingo Rockel &lt;ingo.rockel@gmail.com&gt;,<br>" +
+                "with contributions from Robert Whitehurst &lt;maestoso@java.net&gt;.<br><br>" +
                 "Icons used are based on Benno System Icons by Benno Meyer.<br>" +
                 "Welcome screen uses icons from NuoveXT2 icon set by Alexandre Moore.<br>" +
                 "Contains classes from JEdit for logfile display.</i></p><br>" +
