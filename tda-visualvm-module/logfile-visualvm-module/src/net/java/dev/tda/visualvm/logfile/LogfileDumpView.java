@@ -35,7 +35,7 @@ import org.openide.util.Utilities;
  * @author irockel
  */
 public class LogfileDumpView extends DataSourceView {
-    private static final String IMAGE_PATH = "net/java/dev/tda/visualvm/logfile/resources/logfile.gif";  // NOI18N
+    private static final String IMAGE_PATH = "net/java/dev/tda/visualvm/logfile/resources/logfile.png";  // NOI18N
     private Logfile logfile;
     private TDA tdaPanel;
     private LogPanel logPanel = null;

@@ -35,7 +35,7 @@ import org.openide.util.Utilities;
  */
 public class AddLogfileAction extends SingleDataSourceAction<LogfileDataSource> {
     
-    private static final String ICON_PATH = "net/java/dev/tda/visualvm/logfile/resources/logfileadd.gif";    // NOI18N
+    private static final String ICON_PATH = "net/java/dev/tda/visualvm/logfile/resources/logfileadd.png";    // NOI18N
     private static final Image ICON =  Utilities.loadImage(ICON_PATH);
     private static JFileChooser fc = null;
     

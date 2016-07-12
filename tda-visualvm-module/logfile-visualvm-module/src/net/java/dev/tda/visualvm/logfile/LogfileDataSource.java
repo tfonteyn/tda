@@ -52,7 +52,7 @@ public class LogfileDataSource extends DataSource {
     
     
     private static class LogfileDataSourceDescriptor extends DataSourceDescriptor {
-        private static final Image NODE_ICON = Utilities.loadImage("net/java/dev/tda/visualvm/logfile/resources/logfiles.gif", true);    // NOI18N
+        private static final Image NODE_ICON = Utilities.loadImage("net/java/dev/tda/visualvm/logfile/resources/logfiles.png", true);    // NOI18N
 
         LogfileDataSourceDescriptor() {
             super(LogfileDataSource.sharedInstance(), NbBundle.getMessage(LogfileDumpView.class, "ExplorerNode_Name_Logfiles"), null, NODE_ICON, 20, EXPAND_ON_EACH_NEW_CHILD);   // NOI18N
