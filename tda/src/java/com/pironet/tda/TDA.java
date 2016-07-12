@@ -451,7 +451,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
             }
             resultString = result.toString();
             resultString = resultString.replaceFirst("./important.png", TDA.class.getResource("doc/important.png").toString());
-            resultString = resultString.replaceFirst("./logo.png", TDA.class.getResource("doc/logo.png").toString());
             resultString = resultString.replaceFirst("./fileopen.png", TDA.class.getResource("doc/fileopen.png").toString());
             resultString = resultString.replaceFirst("./settings.png", TDA.class.getResource("doc/settings.png").toString());
             resultString = resultString.replaceFirst("./help.png", TDA.class.getResource("doc/help.png").toString());
@@ -844,7 +843,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
     
     private String getInfoText() {
         StringBuffer info = new StringBuffer("<html><body bgcolor=\"ffffff\"><font face=\"System\" size=+2><b>");
-        info.append("<img border=0 src=\"" + TDA.class.getResource("icons/TDA.gif") + "\">" + AppInfo.getAppInfo());
+        info.append("<img border=0 src=\"" + TDA.class.getResource("icons/TDA.png") + "\">" + AppInfo.getAppInfo());
         info.append("</b></font><hr fgcolor=\"#cccccc\"><font face=\"System\"><p>");
         info.append("(C)opyright ");
         info.append(AppInfo.getCopyright());
@@ -2359,7 +2358,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //Image image = Toolkit.getDefaultToolkit().getImage( "TDA.gif" );
-        Image image = TDA.createImageIcon("TDA.gif").getImage();
+        Image image = TDA.createImageIcon("TDA.png").getImage();
         frame.setIconImage( image );
         
         
