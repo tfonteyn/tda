@@ -52,24 +52,24 @@ public class TreeRenderer extends DefaultTreeCellRenderer {
         if (leaf && isCategory(value)) {
             setIcon(getIconFromCategory(value));
         } else if (leaf && isThreadInfo(value)) {
-            setIcon(TDA.createImageIcon("Thread.gif"));
+            setIcon(TDA.createImageIcon("Thread.png"));
         } else if(leaf && isHistogramInfo(value)) {
-            setIcon(TDA.createImageIcon("Histogram.gif"));
+            setIcon(TDA.createImageIcon("Histogram.png"));
         } else if (leaf && isLogfile(value)) {
-            setIcon(TDA.createImageIcon("Root.gif"));
+            setIcon(TDA.createImageIcon("Root.png"));
         } else if (leaf && isLogFileContent(value)) {
-            setIcon(TDA.createImageIcon("LogfileContent.gif"));
+            setIcon(TDA.createImageIcon("LogfileContent.png"));
         } else if(!leaf) {
             if(((DefaultMutableTreeNode) value).isRoot() || isLogfile(value)) {
-                setIcon(TDA.createImageIcon("Root.gif"));
+                setIcon(TDA.createImageIcon("Root.png"));
             } else if(isThreadInfo(value)) {
                 if(((ThreadInfo) ((DefaultMutableTreeNode) value).getUserObject()).areALotOfWaiting()) {
-                    setIcon(TDA.createImageIcon("MonitorRed.gif"));
+                    setIcon(TDA.createImageIcon("MonitorRed.png"));
                 } else {
-                    setIcon(TDA.createImageIcon("Monitor.gif"));
+                    setIcon(TDA.createImageIcon("Monitor.png"));
                 }
             } else {
-                setIcon(TDA.createImageIcon("ThreadDump.gif"));
+                setIcon(TDA.createImageIcon("ThreadDump.png"));
             }
         }
         this.setBackgroundNonSelectionColor(new Color(0,0,0,0));

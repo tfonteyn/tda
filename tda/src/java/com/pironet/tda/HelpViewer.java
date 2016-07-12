@@ -81,7 +81,7 @@ public class HelpViewer extends BasicContentViewerUI {
 
         final JDialog helpFrame = new JDialog(owner, ResourceManager.translate("help.contents"));
         try {
-            helpFrame.setIconImage(TDA.createImageIcon("Help.gif").getImage());
+            helpFrame.setIconImage(TDA.createImageIcon("Help.png").getImage());
         } catch (NoSuchMethodError nsme) {
             // ignore, for 1.4 backward compatibility
         }

@@ -150,7 +150,7 @@ public class MainMenu extends JMenuBar {
         //a group of JMenuItems
         menuItem = new JMenuItem(ResourceManager.translate("file.open"),
                 KeyStroke.getKeyStroke(ResourceManager.translate("file.open.mnem")).getKeyCode());
-        menuItem.setIcon(TDA.createImageIcon("FileOpen.gif"));
+        menuItem.setIcon(TDA.createImageIcon("FileOpen.png"));
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 ResourceManager.translate("file.open.accel")));
         menuItem.getAccessibleContext().setAccessibleDescription(
@@ -160,7 +160,7 @@ public class MainMenu extends JMenuBar {
         
         closeMenuItem = new JMenuItem(ResourceManager.translate("file.close"),
                 KeyStroke.getKeyStroke(ResourceManager.translate("file.close.mnem")).getKeyCode());
-        closeMenuItem.setIcon(TDA.createImageIcon("CloseFile.gif"));
+        closeMenuItem.setIcon(TDA.createImageIcon("CloseFile.png"));
         closeMenuItem.getAccessibleContext().setAccessibleDescription(
                 ResourceManager.translate("file.open.description"));
         closeMenuItem.addActionListener(listener);
@@ -235,7 +235,7 @@ public class MainMenu extends JMenuBar {
         
         expandAllMenuItem = new JMenuItem(ResourceManager.translate("view.expand"),
                 KeyStroke.getKeyStroke(ResourceManager.translate("view.expand.mnem")).getKeyCode());
-        expandAllMenuItem.setIcon(TDA.createImageIcon("Expanded.gif"));
+        expandAllMenuItem.setIcon(TDA.createImageIcon("Expanded.png"));
         expandAllMenuItem.setAccelerator(KeyStroke.getKeyStroke(
                 ResourceManager.translate("view.expand.accel")));
         expandAllMenuItem.getAccessibleContext().setAccessibleDescription(
@@ -246,7 +246,7 @@ public class MainMenu extends JMenuBar {
 
         collapseAllMenuItem = new JMenuItem(ResourceManager.translate("view.collapse"),
                 KeyStroke.getKeyStroke(ResourceManager.translate("view.collapse.mnem")).getKeyCode());
-        collapseAllMenuItem.setIcon(TDA.createImageIcon("Collapsed.gif"));
+        collapseAllMenuItem.setIcon(TDA.createImageIcon("Collapsed.png"));
         collapseAllMenuItem.setAccelerator(KeyStroke.getKeyStroke(
                 ResourceManager.translate("view.collapse.accel")));
         collapseAllMenuItem.getAccessibleContext().setAccessibleDescription(
@@ -278,7 +278,7 @@ public class MainMenu extends JMenuBar {
         
         longMenuItem = new JMenuItem(ResourceManager.translate("tools.longrunning"),
                 KeyStroke.getKeyStroke(ResourceManager.translate("tools.longrunning.mnem")).getKeyCode());
-        longMenuItem.setIcon(TDA.createImageIcon("FindLRThreads.gif"));
+        longMenuItem.setIcon(TDA.createImageIcon("FindLRThreads.png"));
         longMenuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_L, ActionEvent.ALT_MASK));
         longMenuItem.getAccessibleContext().setAccessibleDescription(
@@ -290,7 +290,7 @@ public class MainMenu extends JMenuBar {
 
         menuItem = new JMenuItem("Filters",
                 KeyEvent.VK_F);
-        menuItem.setIcon(TDA.createImageIcon("Filters.gif"));
+        menuItem.setIcon(TDA.createImageIcon("Filters.png"));
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_F, ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
@@ -300,7 +300,7 @@ public class MainMenu extends JMenuBar {
         
         menuItem = new JMenuItem("Categories",
                 KeyEvent.VK_F);
-        menuItem.setIcon(TDA.createImageIcon("CustomCat.gif"));
+        menuItem.setIcon(TDA.createImageIcon("CustomCat.png"));
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_G, ActionEvent.ALT_MASK));
         menuItem.getAccessibleContext().setAccessibleDescription(
@@ -312,7 +312,7 @@ public class MainMenu extends JMenuBar {
 
         menuItem = new JMenuItem(ResourceManager.translate("file.preferences"),
                 KeyStroke.getKeyStroke(ResourceManager.translate("file.preferences.mnem")).getKeyCode());
-        menuItem.setIcon(TDA.createImageIcon("Preferences.gif"));
+        menuItem.setIcon(TDA.createImageIcon("Preferences.png"));
         menuItem.getAccessibleContext().setAccessibleDescription(
                 ResourceManager.translate("file.preferences.description"));
         menuItem.addActionListener(listener);
@@ -343,7 +343,7 @@ public class MainMenu extends JMenuBar {
         
         menuItem = new JMenuItem(ResourceManager.translate("help.contents"),
                 KeyStroke.getKeyStroke(ResourceManager.translate("help.contents.mnem")).getKeyCode());
-        menuItem.setIcon(TDA.createImageIcon("Help.gif"));
+        menuItem.setIcon(TDA.createImageIcon("Help.png"));
         menuItem.getAccessibleContext().setAccessibleDescription(
                 ResourceManager.translate("help.contents.description"));
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
@@ -370,7 +370,7 @@ public class MainMenu extends JMenuBar {
         menu.addSeparator();
         menuItem = new JMenuItem("About TDA",
                 KeyEvent.VK_A);
-        menuItem.setIcon(TDA.createImageIcon("About.gif"));
+        menuItem.setIcon(TDA.createImageIcon("About.png"));
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "About Thread Dump Analyzer");
         menuItem.addActionListener(listener);
@@ -440,32 +440,32 @@ public class MainMenu extends JMenuBar {
     private void createToolBar() {
         toolBar = new JToolBar("TDA Toolbar");
         if(listener.runningAsJConsolePlugin || listener.runningAsVisualVMPlugin) {
-            toolBar.add(createToolBarButton("Request a Thread Dump", "FileOpen.gif"));
+            toolBar.add(createToolBarButton("Request a Thread Dump", "FileOpen.png"));
             toolBar.setFloatable(false);
         } else {
-            toolBar.add(createToolBarButton("Open Logfile", "FileOpen.gif"));
-            closeToolBarButton = createToolBarButton("Close selected Logfile", "CloseFile.gif");
+            toolBar.add(createToolBarButton("Open Logfile", "FileOpen.png"));
+            closeToolBarButton = createToolBarButton("Close selected Logfile", "CloseFile.png");
             closeToolBarButton.setEnabled(false);
             toolBar.add(closeToolBarButton);
         }
         toolBar.addSeparator();
-        toolBar.add(createToolBarButton("Preferences", "Preferences.gif"));
+        toolBar.add(createToolBarButton("Preferences", "Preferences.png"));
         toolBar.addSeparator();
-        expandButton = createToolBarButton("Expand all nodes", "Expanded.gif");
+        expandButton = createToolBarButton("Expand all nodes", "Expanded.png");
         expandButton.setEnabled(false);
         toolBar.add(expandButton);
-        collapseButton = createToolBarButton("Collapse all nodes", "Collapsed.gif");
+        collapseButton = createToolBarButton("Collapse all nodes", "Collapsed.png");
         collapseButton.setEnabled(false);
         toolBar.add(collapseButton);
         toolBar.addSeparator();
-        findLRThreadsButton = createToolBarButton("Find long running threads", "FindLRThreads.gif");
+        findLRThreadsButton = createToolBarButton("Find long running threads", "FindLRThreads.png");
         findLRThreadsButton.setEnabled(false);
         toolBar.add(findLRThreadsButton);
         
-        toolBar.add(createToolBarButton("Filters", "Filters.gif"));
-        toolBar.add(createToolBarButton("Custom Categories", "CustomCat.gif"));
+        toolBar.add(createToolBarButton("Filters", "Filters.png"));
+        toolBar.add(createToolBarButton("Custom Categories", "CustomCat.png"));
         toolBar.addSeparator();
-        toolBar.add(createToolBarButton("Help","Help.gif"));
+        toolBar.add(createToolBarButton("Help","Help.png"));
     }
     
     /**

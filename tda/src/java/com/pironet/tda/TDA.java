@@ -1726,9 +1726,9 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
             } else if ("Help".equals(source.getText())) {
                 showHelp();
             } else if ("Release Notes".equals(source.getText())) {
-                showInfoFile("Release Notes", "doc/README", "Document.gif");
+                showInfoFile("Release Notes", "doc/README", "Document.png");
             } else if ("License".equals(source.getText())) {
-                showInfoFile("License Information", "doc/COPYING", "Document.gif");
+                showInfoFile("License Information", "doc/COPYING", "Document.png");
             } else if ("Forum".equals(source.getText())) {
                 try {
                     Browser.open("https://tda.dev.java.net/servlets/ForumMessageList?forumID=1967");
