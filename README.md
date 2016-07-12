@@ -21,8 +21,6 @@ The emphasis of the TDA is to provide analysis support of offline information ga
 
 In addition to TDA you might find the GCViewer helpful. It parses the output of the garbage collector from a loggc file and displays it graphically, so you can analyse the memory usage over the time.
 
-TDA includes a help overview giving detailed information on how to use the tool.
-
 TDA orignally was hosted on java.net: https://java.net/projects/tda
 
 ##News
