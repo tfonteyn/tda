@@ -4,7 +4,7 @@
 
 ##News
 ###2016-07-12 TDA 2.3 released
-For Downloas and Release Notes see here: https://github.com/irockel/tda/releases/tag/2.3
+For Downloads and Release Notes see here: https://github.com/irockel/tda/releases/tag/2.3
 
 ##Overview
 
