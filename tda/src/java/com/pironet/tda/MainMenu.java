@@ -352,12 +352,6 @@ public class MainMenu extends JMenuBar {
         menuItem.addActionListener(listener);
         menu.add(menuItem);
         menu.addSeparator();
-        menuItem = new JMenuItem("Forum",null);
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "Online TDA Forum");
-        menuItem.addActionListener(listener);
-        menu.add(menuItem);
-        menu.addSeparator();
         menuItem = new JMenuItem("About TDA",
                 KeyEvent.VK_A);
         menuItem.setIcon(TDA.createImageIcon("About.png"));
