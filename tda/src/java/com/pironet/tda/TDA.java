@@ -806,7 +806,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
             // query list of L&Fs
             UIManager.LookAndFeelInfo[] plafs = UIManager.getInstalledLookAndFeels();
             
-            if ((plaf != null) && (!"".equals(plaf))) {
+            if (!"".equals(plaf)) {
                 
                 String[] instPlafs = plaf.split(",");
                 search:
@@ -815,39 +815,15 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
                         currentLAFI = plafs[j];
                         if(currentLAFI.getName().startsWith(instPlafs[i])) {
                             UIManager.setLookAndFeel(currentLAFI.getClassName());
-                            // setup font
-                            setUIFont(new FontUIResource("SansSerif",Font.PLAIN,11));
                             break search;
                         }
                     }
                     }
             }
             
-            if(plaf.startsWith("GTK")) {
-                setFontSizeModifier(2);
-            }
         } catch (Exception except) {
-            // setup font
-            setUIFont(new FontUIResource("SansSerif",Font.PLAIN,11));
+            except.printStackTrace();
         }
-    }
-    
-    private String getInfoText() {
-        StringBuffer info = new StringBuffer("<html><body bgcolor=\"ffffff\"><font face=\"System\" size=+2><b>");
-        info.append("<img border=0 src=\"" + TDA.class.getResource("icons/TDA.png") + "\">" + AppInfo.getAppInfo());
-        info.append("</b></font><hr fgcolor=\"#cccccc\"><font face=\"System\"><p>");
-        info.append("(C)opyright ");
-        info.append(AppInfo.getCopyright());
-        info.append(" - Ingo Rockel<br>");
-        info.append("Version: <b>");
-        info.append(AppInfo.getVersion());
-        info.append("</b><p>");
-        if(runningAsJConsolePlugin || runningAsVisualVMPlugin) {
-            info.append("<a href=\"threaddump://\">Request Thread Dump...</a>");
-        } else {
-            info.append("Select File/Open to open your log file with thread dumps to start analyzing these thread dumps.<p>See Help/Overview for information on how to obtain a thread dump from your VM.</p></font></body></html>");
-        }
-        return(info.toString());
     }
     
     /**
@@ -1803,26 +1779,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         infoDialog.setLocationRelativeTo(getFrame());
         infoDialog.setVisible(true);
     }
-    
-    /**
-     * set the ui font for all tda stuff (needs to be done for create of objects)
-     * @param f the font to user
-     */
-    private void setUIFont(javax.swing.plaf.FontUIResource f){
-        //
-        // sets the default font for all Swing components.
-        // ex.
-        //  setUIFont (new javax.swing.plaf.FontUIResource("Serif",Font.ITALIC,12));
-        //
-        java.util.Enumeration keys = UIManager.getDefaults().keys();
-        while (keys.hasMoreElements()) {
-            Object key = keys.nextElement();
-            Object value = UIManager.get(key);
-            if (value instanceof javax.swing.plaf.FontUIResource)
-                UIManager.put(key, f);
-        }
-    }
-    
     
     /**
      * display the specified file in a info window.
