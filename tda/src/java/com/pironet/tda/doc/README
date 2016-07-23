@@ -1,9 +1,12 @@
 <html>
 <link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
 <body bgcolor="ffffff"><pre>
-TDA - Thread Dump Analyzer -- Version 2.3.1
+TDA - Thread Dump Analyzer -- Version 2.3.2
 
-Note: This is the 2.3.1 release of the software, for an usage overview see Help/Overview.
+Note: This is the 2.3.2 release of the software, for an usage overview see Help/Overview.
+
+Changes from 2.3.1 are:
+* Don't do any L&F changes if in plugin mode (JConsole or VisualVM)
 
 Changes from 2.3 are:
 * Fixed font size problem in VisualVM plugin.
