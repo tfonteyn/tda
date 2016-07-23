@@ -196,7 +196,7 @@ public class PreferencesDialog extends JDialog {
             innerPanel.add(layoutPanel);
             
             layoutPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-            layoutPanel.add(new JLabel("Use GTK Look and Feel on Unix/Linux (only recommended with JDK 1.6)"));
+            layoutPanel.add(new JLabel("Use GTK Look and Feel on Unix/Linux"));
             useGTKLF = new JCheckBox();
             layoutPanel.add(useGTKLF);
             innerPanel.add(layoutPanel);

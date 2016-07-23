@@ -259,8 +259,7 @@ public class PrefManager {
     }
     
     public boolean isUseGTKLF() {
-        return(toolPrefs.getBoolean("useGTKLF", System.getProperty("java.version").startsWith("1.6") && 
-                System.getProperty("os.name").startsWith("Linux") ? true : false));
+        return(toolPrefs.getBoolean("useGTKLF", System.getProperty("os.name").startsWith("Linux")));
     }
     
     public void setMillisTimeStamp(boolean value) {
