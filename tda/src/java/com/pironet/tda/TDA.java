@@ -2241,7 +2241,9 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
      */
     private void saveState() {
         PrefManager.get().setWindowState(frame.getExtendedState());
-        PrefManager.get().setSelectedPath(new File(fc.getDirectory()));
+        if (fc.getDirectory() != null) {
+            PrefManager.get().setSelectedPath(new File(fc.getDirectory()));
+        }
         PrefManager.get().setPreferredSize(frame.getRootPane().getSize());
         PrefManager.get().setWindowPos(frame.getX(), frame.getY());
         if(isThreadDisplay()) {
