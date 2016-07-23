@@ -7,6 +7,7 @@ Note: This is the 2.3.2 release of the software, for an usage overview see Help/
 
 Changes from 2.3.1 are:
 * Don't do any L&F changes if in plugin mode (JConsole or VisualVM)
+* Fixed broken init of native FileChooser Dialog.
 
 Changes from 2.3 are:
 * Fixed font size problem in VisualVM plugin.

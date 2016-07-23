@@ -17,7 +17,6 @@
  * along with Foobar; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * $Id: TDA.java,v 1.190 2010-02-03 12:40:29 irockel Exp $
  */
 package com.pironet.tda;
 
@@ -56,7 +55,6 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
-import javax.swing.plaf.FontUIResource;
 import javax.swing.text.Position;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
@@ -130,9 +128,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
     
     private static int fontSizeModifier = 0;
 
-    
-    private static TDA myTDA = null;
-    
     private JEditorPane htmlPane;
     private JEditTextArea jeditPane;
     protected JTree tree;
@@ -165,17 +160,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
     private StatusBar statusBar;
     
     private SearchDialog searchDialog;
-    
-    /**
-     * singleton access method for TDA
-     */
-    public static TDA get(boolean setLF) {
-        if(myTDA == null) {
-            myTDA = new TDA(setLF);
-        }
-        
-        return(myTDA);
-    }
     
     /**
      * constructor (needs to be public for plugin)
@@ -335,7 +319,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         
         if(firstFile && runningAsVisualVMPlugin) {
             // init filechooser
-            fc = new FileDialog(TDA.get(true).getFrame());
+            fc = new FileDialog(getFrame());
             fc.setMultipleMode(true);
             try {
                 fc.setDirectory(PrefManager.get().getSelectedPath().getCanonicalPath());
@@ -369,7 +353,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
                         Transferable transfer = event.getTransferable();
                         File[] files = getAcceptedFiles(transfer);
                         if (null != files && files.length != 0) {
-                            TDA.get(true).openFiles(files, false);
+                            openFiles(files, false);
                             event.getDropTargetContext().dropComplete(true);
                         }
                     } catch (InvalidDnDOperationException ex) {
@@ -1856,7 +1840,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
      */
     public void saveLogFile() {
         if(fc == null) {
-            fc = new FileDialog(TDA.get(true).getFrame());
+            fc = new FileDialog(getFrame());
             fc.setMultipleMode(false);
             try {
                 fc.setDirectory(PrefManager.get().getSelectedPath().getCanonicalPath());
@@ -2294,22 +2278,22 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         Image image = TDA.createImageIcon("TDA.png").getImage();
         frame.setIconImage( image );
         
-        
+        final TDA tdaInstance = new TDA(true);
         frame.getRootPane().setPreferredSize(PrefManager.get().getPreferredSize());
 
-        frame.setJMenuBar(new MainMenu(TDA.get(true)));
-        TDA.get(true).init(false, false);
+        frame.setJMenuBar(new MainMenu(tdaInstance));
+        tdaInstance.init(false, false);
         
         //Create and set up the content pane.
         if(dumpFile != null) {
-            TDA.get(true).initDumpDisplay(null);
+            tdaInstance.initDumpDisplay(null);
         }
         
-        TDA.get(true).setOpaque(true); //content panes must be opaque
-        frame.setContentPane(TDA.get(true));
+        tdaInstance.setOpaque(true); //content panes must be opaque
+        frame.setContentPane(tdaInstance);
         
         // init filechooser
-        fc = new FileDialog(TDA.get(true).getFrame());
+        fc = new FileDialog(tdaInstance.getFrame());
         fc.setMultipleMode(true);
         try {
             fc.setDirectory(PrefManager.get().getSelectedPath().getCanonicalPath());
@@ -2322,7 +2306,7 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
          */
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                TDA.get(true).saveState();
+                tdaInstance.saveState();
             }
             
             public void windowClosed(WindowEvent e) {
