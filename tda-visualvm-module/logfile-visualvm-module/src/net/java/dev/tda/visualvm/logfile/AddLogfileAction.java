@@ -89,8 +89,9 @@ public class AddLogfileAction extends SingleDataSourceAction<LogfileDataSource> 
     
     @Override
     protected void initialize() {
-        if (Utilities.isWindows()) setEnabled(false);
-        else if (tracksSelection) super.initialize();
+        if (tracksSelection) {
+            super.initialize();
+        }
     }
 }
 
