@@ -63,7 +63,7 @@ public class EditCustomCategoryDialog extends JDialog {
     public EditCustomCategoryDialog(Frame owner, String frameTitle, JList catList, boolean isAdd) {
         super(owner, frameTitle);
         try {
-            setIconImage(TDA.createImageIcon("Filters.gif").getImage());
+            setIconImage(TDA.createImageIcon("Filters.png").getImage());
         } catch (NoSuchMethodError nsme) {
             // ignore, for 1.4 backward compatibility
         }
