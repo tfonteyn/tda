@@ -57,7 +57,7 @@ public class PreferencesDialog extends JDialog {
      * Creates a new instance of PreferencesDialog
      */
     public PreferencesDialog(Frame owner) {
-        super(owner, "Preferences");
+        super(owner, "Preferences", true);
         try {
             this.setIconImage(TDA.createImageIcon("Preferences.png").getImage());
         } catch (NoSuchMethodError nsme) {
@@ -94,7 +94,6 @@ public class PreferencesDialog extends JDialog {
             okButton.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    frame.setEnabled(true);
                     saveSettings();
                 }
             });
@@ -102,7 +101,6 @@ public class PreferencesDialog extends JDialog {
             cancelButton.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    frame.setEnabled(true);
                     dispose();
                 }
             });

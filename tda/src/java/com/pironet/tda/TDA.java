@@ -1790,7 +1790,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
             prefsDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         }
         
-        getFrame().setEnabled(false);
         //Display the window.
         prefsDialog.reset();
         prefsDialog.pack();
@@ -1806,7 +1805,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
             filterDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         }
         
-        getFrame().setEnabled(false);
         //Display the window.
         filterDialog.reset();
         filterDialog.pack();
@@ -1824,7 +1822,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
             categoriesDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         }
         
-        getFrame().setEnabled(false);
         //Display the window.
         categoriesDialog.reset();
         categoriesDialog.pack();
@@ -2212,10 +2209,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
 
             LongThreadDialog longThreadDialog = new LongThreadDialog(this, paths, mergeRoot, dumpMap);
             
-            if(frame != null) {
-                frame.setEnabled(false);
-            }
-            
             //Display the window.
             longThreadDialog.reset();
             longThreadDialog.pack();
@@ -2341,7 +2334,6 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
         //Create and set up the window.
         searchDialog = new SearchDialog(getFrame(), catComp);
         
-        getFrame().setEnabled(false);
         //Display the window.
         searchDialog.reset();
         searchDialog.pack();

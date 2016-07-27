@@ -56,7 +56,7 @@ public class FilterDialog extends JDialog {
      * Creates a new instance of PreferencesDialog
      */
     public FilterDialog(Frame owner) {
-        super(owner, "Filter Settings");
+        super(owner, "Filter Settings", true);
         try {
             setIconImage(TDA.createImageIcon("Filters.png").getImage());
         } catch (NoSuchMethodError nsme) {
@@ -80,7 +80,6 @@ public class FilterDialog extends JDialog {
         closeButton.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                frame.setEnabled(true);
                 filterPanel.saveSettings();
                 dispose();
             }
@@ -168,10 +167,6 @@ public class FilterDialog extends JDialog {
         private void createFilterDialog(String title, boolean isAdd, int selectedIndex) {
             EditFilterDialog fDiag = new EditFilterDialog(owner, title, filterList, isAdd);
             fDiag.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-            if (owner != null) {
-                owner.setEnabled(false);
-            }
 
             //Display the window.
             fDiag.reset();

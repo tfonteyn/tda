@@ -61,7 +61,7 @@ public class EditCustomCategoryDialog extends JDialog {
      * Creates a new instance of PreferencesDialog
      */
     public EditCustomCategoryDialog(Frame owner, String frameTitle, JList catList, boolean isAdd) {
-        super(owner, frameTitle);
+        super(owner, frameTitle, true);
         try {
             setIconImage(TDA.createImageIcon("Filters.png").getImage());
         } catch (NoSuchMethodError nsme) {
@@ -87,9 +87,6 @@ public class EditCustomCategoryDialog extends JDialog {
         
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(frame != null) {
-                    frame.setEnabled(true);
-                }
                 if(!isAdd) {
                     CustomCategory cat = (CustomCategory) catList.getModel().getElementAt(catList.getSelectedIndex());
                     applyCat(cat);
@@ -107,9 +104,6 @@ public class EditCustomCategoryDialog extends JDialog {
         
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(frame != null) {
-                    frame.setEnabled(true);
-                }
                 dispose();
             }
         });

@@ -56,7 +56,7 @@ public class HelpOverviewDialog extends JDialog {
      * Creates a new instance of HelpOverviewDialog 
      */
     public HelpOverviewDialog(JFrame owner, String title, String file, Image icon) {
-        super(owner, title);
+        super(owner, title, true);
         setFile(file);
         if(icon != null) {
             try {

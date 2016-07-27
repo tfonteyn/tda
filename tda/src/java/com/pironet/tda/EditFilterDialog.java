@@ -55,7 +55,7 @@ public class EditFilterDialog extends JDialog {
      * Creates a new instance of PreferencesDialog
      */
     public EditFilterDialog(Frame owner, String frameTitle, JList filterList, boolean isAdd) {
-        super(owner, frameTitle);
+        super(owner, frameTitle, true);
         try {
             setIconImage(TDA.createImageIcon("Filters.png").getImage());
         } catch (NoSuchMethodError nsme) {

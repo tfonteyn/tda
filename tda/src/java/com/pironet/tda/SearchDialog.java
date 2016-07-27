@@ -43,10 +43,9 @@ public class SearchDialog extends JDialog
     private JTextField searchField;
     
     private JComponent searchComp;
-    private JTable searchTable;
         
     public SearchDialog(JFrame owner, JComponent comp) {
-        super(owner, "Search this category... ");
+        super(owner, "Search this category... ", true);
         setLayout(new FlowLayout(FlowLayout.LEFT));
         
         //Create everything.

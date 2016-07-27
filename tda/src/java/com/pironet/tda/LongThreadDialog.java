@@ -57,7 +57,7 @@ public class LongThreadDialog extends JDialog {
      * Creates a new instance of PreferencesDialog 
      */
     public LongThreadDialog(TDA owner, TreePath[] dumps, DefaultMutableTreeNode top, Map threadDumps) {        
-        super(TDA.frame, "Detect long running Threads");
+        super(TDA.frame, "Detect long running Threads", true);
         backRef = owner;
         this.dumps = dumps;
         this.threadDumps = threadDumps;
@@ -87,9 +87,6 @@ public class LongThreadDialog extends JDialog {
                     divider = backRef.topSplitPane.getDividerLocation();
                 }
 
-                if(TDA.frame != null) {
-                    TDA.frame.setEnabled(true);
-                }
                 ((Logfile) top.getUserObject()).getUsedParser().findLongRunningThreads(top, threadDumps, dumps, Integer.parseInt(settingsPanel.minOccurenceField.getText()), settingsPanel.threadRegExField.getText());
                 backRef.createTree();
                 backRef.tree.expandRow(1);
@@ -104,9 +101,6 @@ public class LongThreadDialog extends JDialog {
         
         cancelButton.addActionListener( new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(TDA.frame != null) {
-                    TDA.frame.setEnabled(true);
-                }
                 dispose();
             }
         });
