@@ -784,6 +784,9 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
                 plaf = "GTK,Mac,Windows,Metal";
             }
             
+            System.setProperty("apple.laf.useScreenMenuBar", "true");
+            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "TDA");
+            
             // this line needs to be implemented in order to make L&F work properly
             UIManager.getLookAndFeelDefaults().put("ClassLoader", getClass().getClassLoader());
             
