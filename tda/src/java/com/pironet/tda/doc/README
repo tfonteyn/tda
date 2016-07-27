@@ -7,6 +7,7 @@ Note: This is the 2.3.3 release of the software, for an usage overview see Help/
 
 Changes from 2.3.2 are:
 * Fixed crash in filters and categories.
+* Fixed missing "Add Logfile" Link in VisualVM if running on Windows.
 
 Changes from 2.3.1 are:
 * Don't do any L&F changes if in plugin mode (JConsole or VisualVM)
