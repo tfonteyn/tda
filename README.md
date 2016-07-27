@@ -3,6 +3,9 @@
 <img src="https://raw.githubusercontent.com/irockel/tda/master/tda-main-screen.png" width="700"/>
 
 ##News
+###2016-07-27 TDA 2.3.3 released
+For Downloads and Release Notes see here: https://github.com/irockel/tda/releases/tag/2.3.3
+
 ###2016-07-23 TDA 2.3.2 released
 For Downloads and Release Notes see here: https://github.com/irockel/tda/releases/tag/2.3.2
 
