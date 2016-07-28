@@ -30,11 +30,11 @@ Features are in detail:
 * ability to add additional logfiles (useful if logfiles are rotated) or open many at once.
 * Session handling to be able to reopen a tda session.
 * Integration into JConsole as plugin.
-* A VisualVM plugin.
+* A VisualVM plugin, available through the VisualVM Plugin Center.
 
 The emphasis of the TDA is to provide analysis support of offline information gathered from production environments.
 
-In addition to TDA you might find the GCViewer helpful. It parses the output of the garbage collector from a loggc file and displays it graphically, so you can analyse the memory usage over the time.
+In addition to TDA you might find the GCViewer helpful. It parses the output of the garbage collector from a loggc file and displays it graphically, so you can analyse the memory usage over the time. See here: https://github.com/chewiebug/GCViewer
 
 TDA orignally was hosted on java.net: https://java.net/projects/tda
 
