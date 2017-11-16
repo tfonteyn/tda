@@ -3,6 +3,9 @@
 <img src="https://raw.githubusercontent.com/irockel/tda/master/tda-main-screen.png" width="700"/>
 
 <h2>News</h2>
+<h3>2017-11-16 Migrated Online-Help to GitHub Wiki</h3>
+The broken Online-Help is migrated to the Wiki and is available again.
+
 <h3>2016-07-27 TDA 2.3.3 released</h3>
 For Downloads and Release Notes see here: https://github.com/irockel/tda/releases/tag/2.3.3
 
