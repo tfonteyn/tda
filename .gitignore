@@ -1,2 +1,3 @@
 dist
-/tda/build/
+tda/build/
+tda/builddist/
