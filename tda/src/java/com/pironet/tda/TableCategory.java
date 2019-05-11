@@ -58,7 +58,7 @@ public class TableCategory extends AbstractCategory {
     }
 
     /**
-     * @inherited
+     * {@inheritDoc}
      */
     public JComponent getCatComponent(EventListener listener) {
         if(isFilterEnabled() && ((filteredTable == null) || (getLastUpdated() < PrefManager.get().getFiltersLastChanged()))) {

@@ -25,7 +25,6 @@ import javax.swing.*;
  *
  * @author Slava Pestov
  * @version $Id: InputHandler.java,v 1.3 2007-11-09 16:05:46 irockel Exp $
- * @see org.jedit.syntax.DefaultInputHandler
  */
 public abstract class InputHandler extends KeyAdapter {
     /**
@@ -184,8 +183,8 @@ public abstract class InputHandler extends KeyAdapter {
      * action with the key as a the action command.
      * @param action The action
      */
-    public void grabNextKeyStroke(ActionListener listener) {
-        grabAction = listener;
+    public void grabNextKeyStroke(ActionListener action) {
+        grabAction = action;
     }
 
     /**

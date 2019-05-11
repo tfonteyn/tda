@@ -189,7 +189,8 @@ public class TDA extends JPanel implements ListSelectionListener, TreeSelectionL
 
     /**
      * initializes tda panel
-     * @param asPlugin specifies if tda is running as plugin
+     * @param asJConsolePlugin specifies if tda is running as jconsole plugin
+     * @param asVisualVMPlugin specifies if tda is running as visualvm plugin
      */
     public void init(boolean asJConsolePlugin, boolean asVisualVMPlugin) {
         // init everything

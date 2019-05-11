@@ -39,7 +39,7 @@ public class ThreadsTableModel extends AbstractTableModel {
     
     /**
      * 
-     * @param root
+     * @param rootNode
      */
     public ThreadsTableModel(DefaultMutableTreeNode rootNode) {
         // transform child nodes in proper vector.
@@ -101,7 +101,7 @@ public class ThreadsTableModel extends AbstractTableModel {
     }
     
     /**
-     * @inherited
+     * {@inheritDoc}
      */
     public Class getColumnClass(int columnIndex) {
         if(columnIndex > 1 && columnIndex < 5) {
