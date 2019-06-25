@@ -45,7 +45,7 @@ public class BeaJDKParser extends AbstractDumpParser {
     // private boolean withCurrentTimeStamp = false;
     /**
      * constructs a new instance of a bea jdk parser
-     * @param dumpFileStream the dump file stream to read.
+     * @param bis the dump file stream to read.
      * @param threadStore the thread store to store the thread informations in.
      */
     public BeaJDKParser(BufferedReader bis, Map threadStore, int lineCounter, DateMatcher dm) {
@@ -66,7 +66,7 @@ public class BeaJDKParser extends AbstractDumpParser {
 
     /**
      * parse the next thread dump from the stream passed with the constructor.
-     * @returns null if no more thread dumps were found.
+     * @return null if no more thread dumps were found.
     */
     public MutableTreeNode parseNext() {
         if (nextDump != null) {

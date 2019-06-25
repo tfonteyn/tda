@@ -27,7 +27,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 
 /**
- * custom scroll pane to be used in tda for consistent l&f in the tool.
+ * custom scroll pane to be used in tda for consistent look and feel in the tool.
  * 
  * @author irockel
  */

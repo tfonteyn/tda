@@ -76,7 +76,7 @@ public class SunJDKParser extends AbstractDumpParser {
     }
 
     /**
-     * @returns true, if a class histogram was found and added during parsing.
+     * @return true, if a class histogram was found and added during parsing.
      */
     public boolean isFoundClassHistograms() {
         return (foundClassHistograms);
@@ -84,7 +84,7 @@ public class SunJDKParser extends AbstractDumpParser {
 
     /**
      * parse the next thread dump from the stream passed with the constructor.
-     * @returns null if no more thread dumps were found.
+     * @return null if no more thread dumps were found.
      */
     public MutableTreeNode parseNext() {
         if (nextDump != null) {

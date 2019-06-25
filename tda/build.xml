@@ -71,7 +71,7 @@
     -->
 	
     <property name="dist.temp.dir" value="builddist"/>	
-    <target name="makedist">
+    <target name="makedist" depends="default">
 	<delete dir="${dist.temp.dir}" />
         <mkdir dir="${dist.temp.dir}" />
         <copy todir="${dist.temp.dir}">

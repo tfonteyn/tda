@@ -380,7 +380,7 @@ public abstract class AbstractDumpParser implements DumpParser {
     /**
      * check threads in given thread dump and add appropriate 
      * custom categories (if any defined).
-     * @param tdi the thread dump info object.
+     * @param threadDump the thread dump info object.
      */
     public void addCustomCategories(DefaultMutableTreeNode threadDump) {
         ThreadDumpInfo tdi = (ThreadDumpInfo) threadDump.getUserObject();

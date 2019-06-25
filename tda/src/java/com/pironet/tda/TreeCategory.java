@@ -104,7 +104,7 @@ public class TreeCategory extends AbstractCategory implements Serializable {
     }
     
     /**
-     * @inherited
+     * {@inheritDoc}
      */
     public void sort(Comparator nodeComp) {
         super.sort(nodeComp);
